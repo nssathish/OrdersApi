@@ -1,29 +1,23 @@
 using Orders.Api.Dto.Request;
 using Orders.Api.Dto.Response;
-using Orders.Api.Repositories;
 
-namespace Orders.Api.Service;
+namespace Orders.Api.Repositories;
 
-public interface IOrderService
+public interface IOrderRepository
 {
     Task<OrderResponseDto> GetOrderByIdAsync(long id, CancellationToken cancellationToken);
     Task<OrderResponseDto> CreateOrderAsync(OrderRequestDto orderRequest, CancellationToken cancellationToken);
 }
-public class OrderService : IOrderService
-{
-    private readonly IOrderRepository _orderRepository;
-    public OrderService(IOrderRepository orderRepository)
-    {
-        _orderRepository = orderRepository;
-    }
 
+public class OrderRepository : IOrderRepository
+{
     public async Task<OrderResponseDto> CreateOrderAsync(OrderRequestDto orderRequest, CancellationToken cancellationToken)
     {
-        return await _orderRepository.CreateOrderAsync(orderRequest, cancellationToken);
+        return await Task.Run(() => new OrderResponseDto());
     }
 
     public async Task<OrderResponseDto> GetOrderByIdAsync(long id, CancellationToken cancellationToken)
     {
-        return await _orderRepository.GetOrderByIdAsync(id, cancellationToken);
+        return await Task.Run(() => new OrderResponseDto());
     }
 }

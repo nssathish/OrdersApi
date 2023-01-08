@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Orders.Api.Dto.Request;
+using Orders.Api.Dto.Response;
 using Orders.Api.Service;
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
@@ -23,6 +25,13 @@ public class OrdersController : ControllerBase
     [SwaggerOperation("Get order by id", "Get the order for the user by id")]
     public async Task<ActionResult<OrderResponseDto>> Get([Required] long id, CancellationToken cancellationToken)
     {
-        return Ok(await orderService.GetOrderByIdAsync(id, cancellationToken));
+        return Ok(await _orderService.GetOrderByIdAsync(id, cancellationToken));
+    }
+
+    [HttpPost]
+    [SwaggerOperation("Create an order", "Create an order for the user transaction")]
+    public async Task<ActionResult<OrderResponseDto>> CreateOrderAsync([FromBody][Required] OrderRequestDto orderRequest, CancellationToken cancellationToken)
+    {
+        return Ok(await _orderService.CreateOrderAsync(orderRequest, cancellationToken));
     }
 }

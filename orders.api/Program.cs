@@ -1,12 +1,17 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Orders.Api.Repositories;
+using Orders.Api.Service;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddSingleton<IOrderService, OrderService>();
+builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
+
+//Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<IOrderService, OrderService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -19,4 +24,3 @@ if (app.Environment.IsDevelopment())
 app.MapControllers();
 
 app.Run();
-

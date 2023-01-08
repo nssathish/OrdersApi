@@ -1,0 +1,12 @@
+CREATE TABLE [dbo].[Order]
+(
+  [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+  [Status] VARCHAR(50) NOT NULL,
+  [SubTotal] DECIMAL NOT NULL,
+  [Tax] DECIMAL NOT NULL,
+  [Total] DECIMAL NOT NULL,
+  [Created] DATETIME2 NOT NULL,
+  [CreatedBy] VARCHAR(50) NOT NULL,
+  [Lastmodified] DATETIME2 NULL,
+  [LastmodifiedBy] VARCHAR(50) NULL,
+)

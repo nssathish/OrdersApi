@@ -1,0 +1,13 @@
+CREATE TABLE [dbo].[OrderItem]
+(
+  [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+  [Name] VARCHAR(100) NOT NULL,
+  [Quantity] INT NOT NULL DEFAULT 1,
+  [OrderId] UNIQUEIDENTIFIER NOT NULL CONSTRAINT FK_OrderItem_OrderId FOREIGN KEY ([OrderId]) REFERENCES dbo.[Order]([Id]),
+  [Created] DATETIME2 NOT NULL,
+  [CreatedBy] VARCHAR(50) NOT NULL,
+  [Lastmodified] DATETIME2 NULL,
+  [LastmodifiedBy] VARCHAR(50) NULL,
+  [Deleted] DATETIME2 NULL,
+  [DeletedBy] VARCHAR(50) NULL
+)
