@@ -1,15 +1,11 @@
 namespace Orders.Api.Dto.Response;
 
-public class OrderResponseDto
+public class OrderItemResponseDto
 {
     public Guid Id { get; set; }
-    public string? Status { get; set; }
-    public string? CustomerId { get; set; }
-    public OrderItemResponseDto[]? Items { get; set; }
-    public double SubTotal { get; set; }
-    public double Tax { get; set; }
-    public double ShippingCharges { get; set; }
-    public double Total { get; set; }
+    public Guid OrderId { get; set; }
+    public string? Name { get; set; }
+    public int Quantity { get; set; }
     public DateTime Created { get; set; }
     public string? CreatedBy { get; set; }
     public string? LastmodifiedBy { get; set; }
